@@ -23,9 +23,9 @@
           <div class="menu__basket">
             <img src="../images/shopping_cart.png"/>
             <button class="menu__basket__button">
-              <h2 id="menu__city">
-               Корзина
-             </h2>
+              <a id="menu__city" href="../Cart/cart.php">
+                Корзина
+             </a>
           </button>
           </div>
         </div>
