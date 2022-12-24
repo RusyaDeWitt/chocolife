@@ -4,6 +4,16 @@
     <link rel="stylesheet" href="style.css"  type="text/css" />
   </head>
   <body>
+    <?php 
+      session_start();
+      require_once("../connection.php");
+      if (isset($_SESSION["session_phone"])) {
+          $phone=$_SESSION['session_phone'];
+          $query1=mysqli_query($con,"SELECT full_name FROM users WHERE phone_number='".$phone."'");
+    
+          $full_name=mysqli_fetch_assoc($query1)['full_name'];   
+      }
+    ?>
     <header>
       <div class="header">
         <div class="menu">
@@ -17,8 +27,35 @@
             <button class="menu__search__button">Найти</button>
           </div>
           <div class="menu__login">
-            <a class="menu__login__button" href="../Login/login.php">Войти</a>
-            <a id="menu__login__signup"  href="../Login/register.php">Создать аккаунт</a>
+            <?php 
+              if(isset($_SESSION["session_phone"])){
+                 echo "
+                 <div class='dropdown'>
+                  <button class='dropbtn'>Мой профиль</button>
+                  <div class='dropdown-content'>
+                    <a href='#'>Мои данные</a>
+                    <a href='#'>Мои покупки</a>
+                    <form method='post' action='../Login/logout.php'>
+                      <button type='submit' style='background-color: transparent; border: none;'><a>Выйти</a></button>
+                    </form>
+                  </div>
+                 </div>
+                 "; 
+                 echo "
+                 <div class='menu__basket'>
+                    <img id='bookmark__img' src='../images/bookmark.png'/>
+                      <button class='menu__basket__button'>
+                        <a id='menu__city' href='../Cart/cart.php'>
+                          Избранное
+                        </a>
+                      </button>
+                  </div>"; 
+              } else {
+                 echo '<a class="menu__login__button" href="../Login/login.php">Войти</a>
+                <a id="menu__login__signup"  href="../Login/register.php">Создать аккаунт</a>';
+              }
+            
+            ?>
           </div>
           <div class="menu__basket">
             <img src="../images/shopping_cart.png"/>
