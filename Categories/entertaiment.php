@@ -8,7 +8,7 @@
       session_start();
       
       require_once("../connection.php");
-      $certificateQuery = mysqli_query($con, "SELECT * FROM certificates");
+      $certificateQuery = mysqli_query($con, "SELECT * FROM certificates WHERE type='entertaiment'");
       $certificates = mysqli_fetch_all($certificateQuery ,MYSQLI_ASSOC);
         
       if (isset($_SESSION["session_phone"])) {
@@ -72,13 +72,13 @@
         </div>
         <div class="categories">
           <a>ВСЕ</a>
-          <a class="active">НОВЫЕ</a>
+          <a href="../Home/home.php">НОВЫЕ</a>
           <a>КУПОНЫ СНОСО</a>
-          <a href="../Categories/entertaiment.php">РАЗВЛЕЧЕНИЯ</a>
+          <a class="active">РАЗВЛЕЧЕНИЯ</a>
           <a>ЕДА</a>
           <a>ЗДОРОВЬЕ</a>
           <a>КРАСОТА</a>
-          <a href="../Categories/sport.php">СПОРТ</a>
+          <a href="sport.php">СПОРТ</a>
           <a href="../Categories/travel.php">ТУРИЗМ, ОТЕЛИ</a>
           <a>УСЛУГИ</a>
           <a>ТОВАРЫ </a>
@@ -92,7 +92,7 @@
       </div>
       <div class="new">
         <div class="new__label">
-          <a id="new__label">Новые</h1>
+          <a id="new__label">Развлечения</h1>
           <a id="new__label__show-all">Показать все</a>
         </div>
         <div class="cards">
@@ -101,33 +101,33 @@
                 <?php 
                   echo '
                   <a class="card__wrap" href="../CertificateDetail/detail.php?id='.$item["id"].'">
-                    <div class="card__item">
-                    <div class="card">
-                      <img class="card" src="data:image/jpeg;charset=utf8;base64, '.base64_encode($item["image"]).'" />
-                      <div class="card__head">
-                      <div class="card__tag">
-                        <img src="../images/map_point.png" width="20px" height="20px" />
-                        <span>'.$item["address"].'</span>
-                      </div> 
-                        <div class="card__bookmark">
-                          <img src="../images/bookmark.png" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card__info">
-                      <h4>'.$item["name"].'</h4>
-                      <h5>'.$item["studio"].'</h5>
-                      <div class="card__subinfo">
-                        <div class="card__review">
-                          <img src="../images/star.png" />
-                          <h5>'. $item["rating"] .'/'. $item["reviews"] .' отзывов</h5>
-                        </div>
-                        <div class="card__price">
-                          <h3>От '.$item["price"].'тг</h3>
-                        </div>
+                  <div class="card__item">
+                  <div class="card">
+                    <img class="card" src="data:image/jpeg;charset=utf8;base64, '.base64_encode($item["image"]).'" />
+                    <div class="card__head">
+                    <div class="card__tag">
+                      <img src="../images/map_point.png" width="20px" height="20px" />
+                      <span>'.$item["address"].'</span>
+                    </div> 
+                      <div class="card__bookmark">
+                        <img src="../images/bookmark.png" />
                       </div>
                     </div>
                   </div>
+                  <div class="card__info">
+                    <h4>'.$item["name"].'</h4>
+                    <h5>'.$item["studio"].'</h5>
+                    <div class="card__subinfo">
+                      <div class="card__review">
+                        <img src="../images/star.png" />
+                        <h5>'. $item["rating"] .'/'. $item["reviews"] .' отзывов</h5>
+                      </div>
+                      <div class="card__price">
+                        <h3>От '.$item["price"].'тг</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </a>'
                 
                 ?>     

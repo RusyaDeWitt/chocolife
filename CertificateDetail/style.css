@@ -420,3 +420,86 @@ ul {
 #addinfo__ul {
   list-style-type: circle;
 }
+
+
+.main__detail {
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+  max-width: 1100px;
+  margin-top: 50px;
+}
+
+.main__detail__header {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  text-align: left;
+  color: #303030;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.main__detail__header > img {
+  height: max-content;
+}
+
+
+.main__detail__header__price {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+
+.tag__discount {
+  background-color: #f7da3b;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: auto;
+  font-size: 20px;
+  border: none;
+}
+
+.tag__price {
+  background-color: #ededed;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: auto;
+  font-size: 20px;
+  border:none;
+}
+
+#address {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+#discount {
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+
+.main__detail__info {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  text-align: left;
+  color: #303030;
+  font-weight: 500;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+
+
+.main__detail__decription {
+  width: 50%;
+}
+#map {
+  height: 400px; /* The height is 400 pixels */
+  width: 100%; /* The width is the width of the web page */
+}

@@ -8,7 +8,7 @@
       session_start();
       
       require_once("../connection.php");
-      $certificateQuery = mysqli_query($con, "SELECT * FROM certificates");
+      $certificateQuery = mysqli_query($con, "SELECT * FROM certificates WHERE type='travel'");
       $certificates = mysqli_fetch_all($certificateQuery ,MYSQLI_ASSOC);
         
       if (isset($_SESSION["session_phone"])) {
@@ -72,14 +72,14 @@
         </div>
         <div class="categories">
           <a>ВСЕ</a>
-          <a class="active">НОВЫЕ</a>
+          <a href="../Home/home.php">НОВЫЕ</a>
           <a>КУПОНЫ СНОСО</a>
-          <a href="../Categories/entertaiment.php">РАЗВЛЕЧЕНИЯ</a>
+          <a href="entertaiment.php">РАЗВЛЕЧЕНИЯ</a>
           <a>ЕДА</a>
           <a>ЗДОРОВЬЕ</a>
           <a>КРАСОТА</a>
-          <a href="../Categories/sport.php">СПОРТ</a>
-          <a href="../Categories/travel.php">ТУРИЗМ, ОТЕЛИ</a>
+          <a href="sport.php">СПОРТ</a>
+          <a class="active">ТУРИЗМ, ОТЕЛИ</a>
           <a>УСЛУГИ</a>
           <a>ТОВАРЫ </a>
         </div>
@@ -92,7 +92,7 @@
       </div>
       <div class="new">
         <div class="new__label">
-          <a id="new__label">Новые</h1>
+          <a id="new__label">Туризм</h1>
           <a id="new__label__show-all">Показать все</a>
         </div>
         <div class="cards">
@@ -106,7 +106,7 @@
                       <img class="card" src="data:image/jpeg;charset=utf8;base64, '.base64_encode($item["image"]).'" />
                       <div class="card__head">
                       <div class="card__tag">
-                        <img src="../images/map_point.png" width="20px" height="20px" />
+                        <img src="../images/map_point.png" width="20px" height="20px"/>
                         <span>'.$item["address"].'</span>
                       </div> 
                         <div class="card__bookmark">
@@ -128,7 +128,7 @@
                       </div>
                     </div>
                   </div>
-              </a>'
+                </a>'
                 
                 ?>     
             <?php
