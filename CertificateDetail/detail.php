@@ -102,9 +102,11 @@
                         '.$item["address"].'
                       </button>
                       <div style="display:flex; gap: 20px">
+                      <a href="../Purchase/purchase.php?id='.$item["id"].'">
                         <button class="tag__discount" id="discount">
                           Купить
-                        </button>
+                       </button>
+                      </a>
                         <button class="tag__price" id="address">
                           В корзину
                         </button>
