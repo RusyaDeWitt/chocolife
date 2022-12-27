@@ -12,10 +12,19 @@
       $certificates = mysqli_fetch_all($certificateQuery ,MYSQLI_ASSOC);
         
       if (isset($_SESSION["session_phone"])) {
-          $phone=$_SESSION['session_phone'];
-          $query1=mysqli_query($con,"SELECT full_name FROM users WHERE phone_number='".$phone."'");
+          $phone = $_SESSION["session_phone"];
+          $existCartQuery = mysqli_query($con, "SELECT certificate_id FROM users_cart WHERE user_id='".$phone."' ");
+          $existCart = mysqli_fetch_all($existCartQuery ,MYSQLI_ASSOC);
     
-          $full_name=mysqli_fetch_assoc($query1)['full_name'];   
+          $temp =  array();
+          foreach($existCart as $item){
+            array_push($temp, $item["certificate_id"]);
+          };
+          
+          $certificateQuery = mysqli_query($con, "SELECT * FROM certificates WHERE id in ('" 
+          . implode("','", array_map('intval', $temp)) 
+          . "') ");
+          $certificates = mysqli_fetch_all($certificateQuery ,MYSQLI_ASSOC);
       }
     ?>
     <header>
@@ -86,14 +95,9 @@
       </div>
     </header>
     <div class="main">
-      <div class="banners">
-        <img src='../images/banner_first.png' class="banner" />
-        <img src='../images/banner_second.png' class="banner" />
-      </div>
       <div class="new">
         <div class="new__label">
-          <a id="new__label">Новые</h1>
-          <a id="new__label__show-all">Показать все</a>
+          <a id="new__label">Мои сертификаты</h1>
         </div>
         <div class="cards">
           <?php 
@@ -121,9 +125,6 @@
                         <div class="card__review">
                           <img src="../images/star.png" />
                           <h5>'. $item["rating"] .'/'. $item["reviews"] .' отзывов</h5>
-                        </div>
-                        <div class="card__price">
-                          <h3>От '.$item["price"].'тг</h3>
                         </div>
                       </div>
                     </div>

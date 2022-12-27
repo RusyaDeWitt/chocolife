@@ -33,7 +33,7 @@
                   <button class='dropbtn'>Мой профиль</button>
                   <div class='dropdown-content'>
                     <a href='#'>Мои данные</a>
-                    <a href='#'>Мои покупки</a>
+                    <a href='../Purchased/purchased.php'>Мои покупки</a>
                     <form method='post' action='../Login/logout.php'>
                       <button type='submit' style='background-color: transparent; border: none;'><a>Выйти</a></button>
                     </form>
@@ -145,7 +145,9 @@
               }
             ?></h5>
           </div>
-          <button class="main__payment__submit">Оплатить</button>
+          <a href="../Payment/payment.php">
+            <button class="main__payment__submit">Оплатить</button>
+          </a>
         </div>
       </div>
       </div>
