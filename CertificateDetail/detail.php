@@ -25,7 +25,6 @@
           }else{
             $sql="INSERT INTO users_cart (user_id, certificate_id)
             VALUES('$phone','$id')";
-            print_r($id);
             $result=mysqli_query($con,$sql);
           };
         }
