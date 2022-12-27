@@ -14,10 +14,9 @@
                 $password=htmlspecialchars($_POST['password']);
                 $query=mysqli_query($con,"SELECT * FROM users WHERE phone_number='".$phone."'");
                 $numrows=mysqli_num_rows($query);
-                $cart='';
                 if($numrows==0){
-                    $sql="INSERT INTO users (full_name, email, phone_number, password, cart)
-                        VALUES('$full_name','$email', '$phone', '$password' , null)";
+                    $sql="INSERT INTO users (full_name, email, phone_number, password)
+                        VALUES('$full_name','$email', '$phone', '$password')";
                     $result=mysqli_query($con,$sql);
                     if($result){
                         header("Location: login.php");

@@ -11,6 +11,7 @@
 
       $detailQuery = mysqli_query($con, "SELECT * FROM certificates WHERE id='".$id."' ");
       $items = mysqli_fetch_all($detailQuery ,MYSQLI_ASSOC)
+      
     ?>
     <header>
       <div class="header">

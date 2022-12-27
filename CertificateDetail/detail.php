@@ -10,7 +10,26 @@
       $id = $_GET['id'];
 
       $detailQuery = mysqli_query($con, "SELECT * FROM certificates WHERE id='".$id."' ");
-      $items = mysqli_fetch_all($detailQuery ,MYSQLI_ASSOC)
+      $items = mysqli_fetch_all($detailQuery ,MYSQLI_ASSOC);
+
+
+    if(isset($_POST["add"])) {
+        addToCart($items, $id, $con);
+      }
+      function addToCart($items, $id, $con) {
+        $phone = $_SESSION["session_phone"];
+        $existCartQuery = mysqli_query($con, "SELECT certificate_id FROM users_cart WHERE user_id='".$phone."' ");
+        $existCart = mysqli_fetch_all($existCartQuery ,MYSQLI_ASSOC);
+          if(in_array(array_values($items)[0]["id"], $existCart)){
+            echo '<div>Уже есть в корзине</div>';
+          }else{
+            $sql="INSERT INTO users_cart (user_id, certificate_id)
+            VALUES('$phone','$id')";
+            print_r($id);
+            $result=mysqli_query($con,$sql);
+          };
+        }
+      
     ?>
  <header>
       <div class="header">
@@ -107,9 +126,11 @@
                           Купить
                        </button>
                       </a>
-                        <button class="tag__price" id="address">
-                          В корзину
+                      <form method="post">
+                        <button class="tag__price" id="address" type="submit" name="add">
+                            В корзину
                         </button>
+                      </form>
                       </div>
                     </div>
                     </div>
